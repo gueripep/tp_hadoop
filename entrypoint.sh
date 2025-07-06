@@ -48,6 +48,9 @@ if [ "$NODE_TYPE" = "namenode" ]; then
   hadoop fs -put -f /job/bonjour.txt /user/root/bonjour.txt || echo "bonjour.txt already exists or failed to upload"
   hadoop fs -mkdir -p /user/root/miserables || true
   hadoop fs -put -f /job/miserables/* /user/root/miserables/ || echo "miserables files already exist or failed to upload"
+  hadoop fs -mkdir -p /input || true
+  hadoop fs -put -f /job/flickrSample.txt /input/flickrSample.txt || echo "flickrSample.txt already exists or failed to upload"
+  hadoop fs -put -f /job/flickrSample.txt /user/root/flickrSample.txt || echo "flickrSample.txt already exists or failed to upload"
   
   # Wait for the NameNode process to complete
   wait $NAMENODE_PID
