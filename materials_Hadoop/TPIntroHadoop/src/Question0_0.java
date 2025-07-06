@@ -54,6 +54,9 @@ public class Question0_0 {
 		job.setMapOutputKeyClass(Text.class);
 		job.setMapOutputValueClass(IntWritable.class);
 
+		job.setCombinerClass(MyReducer.class);
+		job.setNumReduceTasks(3);
+
 		job.setReducerClass(MyReducer.class);
 		job.setOutputKeyClass(Text.class);
 		job.setOutputValueClass(IntWritable.class);
