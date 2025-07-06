@@ -1,0 +1,53 @@
+services:
+  namenode:
+    build: .
+    container_name: namenode
+    hostname: namenode
+    environment:
+      - NODE_TYPE=namenode
+    ports:
+      - "9870:9870"   # HDFS NameNode web UI
+      - "9000:9000"   # HDFS NameNode RPC
+    volumes:
+      - namenode_data:/hadoop/dfs/name
+    networks:
+      - hadoopnet
+
+  datanode1:
+    build: .
+    container_name: datanode1
+    hostname: datanode1
+    environment:
+      - NODE_TYPE=datanode
+    ports:
+      - "9864:9864"   # HDFS DataNode web UI
+    volumes:
+      - datanode1_data:/hadoop/dfs/data
+    networks:
+      - hadoopnet
+    depends_on:
+      - namenode
+
+  datanode2:
+    build: .
+    container_name: datanode2
+    hostname: datanode2
+    environment:
+      - NODE_TYPE=datanode
+    ports:
+      - "9865:9864"   # HDFS DataNode web UI (different host port)
+    volumes:
+      - datanode2_data:/hadoop/dfs/data
+    networks:
+      - hadoopnet
+    depends_on:
+      - namenode
+
+volumes:
+  namenode_data:
+  datanode1_data:
+  datanode2_data:
+
+networks:
+  hadoopnet:
+    driver: bridge

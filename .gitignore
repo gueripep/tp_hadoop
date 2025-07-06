@@ -1,0 +1,36 @@
+# Hadoop libraries
+materials_Hadoop/lib/*
+
+# Compiled Java classes
+*.class
+*.jar
+
+# Log files
+*.log
+execution_traces.log
+
+# Hadoop binary
+hadoop-*.tar.gz
+
+# Docker volumes and temporary files
+.docker/
+tmp/
+
+# IDE files
+.vscode/
+.idea/
+*.iml
+
+# OS generated files
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+
+# Build outputs
+build/
+target/
+out/
